@@ -39,7 +39,7 @@ public class FileHandler {
         
         public void JSONreader() {
             this.mainWindow.mainArea.setText("");
-            this.mainWindow.mainArea.append("Showing all currently present tv series: \n");
+            this.mainWindow.mainArea.append("Showing all tv series: \n");
             
             File curDir = new File(".");
             
@@ -57,7 +57,7 @@ public class FileHandler {
                         TVSeries tvseries = gson.fromJson(reader, TVSeries.class);
 
                         // print details
-                        this.mainWindow.mainArea.append(tvseries.getName() + ": " + tvseries.getStatus() + "\n");
+                        this.mainWindow.mainArea.append("-" + tvseries.getName() + ": " + tvseries.getStatus() + "\n");
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -85,17 +85,23 @@ public class FileHandler {
                         // Convert JSON File to Java Object
                         TVSeries tvseries = gson.fromJson(reader, TVSeries.class);
 
-                        
                         if(fileName.contains(searchedSeries)){
                             this.mainWindow.mainArea.setText("");
-                            this.mainWindow.mainArea.append(tvseries.getName() + ": " + tvseries.getStatus() + "\n");
+                            String status;
+                            if(tvseries.getStatus()){
+                                status = "downloaded";
+                            }
+                            else{
+                                status = "not downloaded";
+                            }
+                            this.mainWindow.mainArea.append(tvseries.getName() + ": " + status + "\n");
                             this.mainWindow.mainArea.append(tvseries.getLink() + "\n");
                             trovato = true;
                         }
                         else{
                             if(!trovato){
+                                this.mainWindow.mainArea.setText("");
                                 this.mainWindow.mainArea.append("The tv series " + searchedSeries + " isn't available"+ "\n");
-                                break;
                             }
                         }
 
