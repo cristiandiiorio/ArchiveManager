@@ -3,6 +3,7 @@ import java.io.IOException;
 
 import com.google.gson.Gson; 
 import com.google.gson.GsonBuilder;  
+import java.awt.Color;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -53,15 +54,22 @@ public class FileHandler {
                         
                         try (Reader reader = new FileReader(f)) {
 
-                        // Convert JSON File to Java Object
-                        TVSeries tvseries = gson.fromJson(reader, TVSeries.class);
+                            // Convert JSON File to Java Object
+                             TVSeries tvseries = gson.fromJson(reader, TVSeries.class);
 
-                        // print details
-                        this.mainWindow.mainArea.append("-" + tvseries.getName() + ": " + tvseries.getStatus() + "\n");
+                            // print details
+                            if(tvseries.getStatus()){
+                                this.mainWindow.mainArea.append("✔ ");
+                            }
+                            else{
+                                this.mainWindow.mainArea.append("✖ ");
+                            }
+                            this.mainWindow.mainArea.append(tvseries.getName());
+                            this.mainWindow.mainArea.append("\n");
 
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
                     }
                 }
