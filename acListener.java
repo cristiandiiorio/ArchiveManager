@@ -1,7 +1,7 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JOptionPane;
+import javax.swing.*;
 
 public class acListener implements ActionListener{
 
@@ -45,6 +45,19 @@ public class acListener implements ActionListener{
                     String seriesStatus = JOptionPane.showInputDialog("Inserisci il nuovo stato della serie");
                     fileHandler.JSONmod(seriesName, seriesStatus);
 		}
+                
+                else if(e.getActionCommand().equals("About")){
+                    JDialog dialog = new JDialog(this.mainWindow.mainFrame, "About");
+                    JTextArea dialogArea = new JTextArea("This is a simple Java Swing gui \n that uses JSON files to track \n my downloaded tv series." + "\n\n\n\n\n\n" + "            ©Cristian Di Iorio 2022");
+                    
+                    dialogArea.setSize(190,190);
+                    dialogArea.setEditable(false);
+                    dialog.add(dialogArea);
+                    
+                    dialog.setSize(200,200);
+                    dialog.setLocationRelativeTo(null);
+                    dialog.setVisible(true);
+                }
 		
 	}
 

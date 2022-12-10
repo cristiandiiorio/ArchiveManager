@@ -9,6 +9,7 @@ public class MainWindow {
     JButton listSeries = new JButton("List");
     JButton add = new JButton("Add");
     JButton change = new JButton("Change");
+    JButton about =new JButton("About");
     
     JPanel topPanel = new JPanel();
     JLabel cercaLabel = new JLabel("Searching for:");
@@ -19,22 +20,23 @@ public class MainWindow {
 	
     JPanel midPanel = new JPanel();
     JTextArea mainArea = new JTextArea(25,45);	
-    
-    JPanel lowPanel = new JPanel();
 	
+    JFrame mainFrame;
 	public MainWindow() {
             
-            JFrame mainFrame = new JFrame("Archive Manager");
+            mainFrame = new JFrame();
          
             acListener ac = new acListener(this);
             
             setupMenuButton(add, ac);
             setupMenuButton(change, ac);
             setupMenuButton(listSeries, ac);
+            setupMenuButton(about, ac);
             
             menuBar.add(add);
             menuBar.add(change);
             menuBar.add(listSeries);
+            menuBar.add(about);
             
             topPanel.add(cercaLabel);
             topPanel.add(cercaField);
