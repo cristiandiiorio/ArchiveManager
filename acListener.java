@@ -29,20 +29,48 @@ public class acListener implements ActionListener{
 		}
 		
 		else if(e.getActionCommand().equals("Add")) {
-                    String seriesName = JOptionPane.showInputDialog("Inserisci il nome della serie");
-                    boolean seriesStatus = Boolean.parseBoolean(JOptionPane.showInputDialog("Inserisci lo stato della serie"));
-                    String seriesLink = JOptionPane.showInputDialog("Inserisci il link della serie");                        
-                    TVSeries tvseries = new TVSeries();
-                    tvseries.setName(seriesName);
-                    tvseries.setStatus(seriesStatus);
-                    tvseries.setLink(seriesLink);
+                    String seriesName = null;
+                    String seriesStatusPre = null;
+                    String seriesLink = null;
+                    boolean seriesStatus;
+                    
+                    boolean escape = false;
+                    
+                    
+                    while(!escape){
+                        while(seriesName == null){
+                            seriesName = JOptionPane.showInputDialog("Series' name: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
+                            if(!(seriesName == null) && (seriesName.equals("*"))){
+                                escape = true;
+                            }
+                        }
+                        while(seriesStatusPre == null && !escape){
+                            seriesStatusPre = JOptionPane.showInputDialog("Series' status: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
+                            if(!(seriesStatusPre == null) && (seriesName.equals("*"))){
+                                escape = true;
+                            }
+                        }
+                        while(seriesLink == null && !escape){
+                            seriesLink = JOptionPane.showInputDialog("Series' link: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
+                            if(!(seriesLink == null) && (seriesName.equals("*"))){
+                                escape = true;
+                            }
+                        }
+                    }
+                    
+                    if(!escape){
+                        seriesStatus = Boolean.parseBoolean(seriesStatusPre);
+                        TVSeries tvseries = new TVSeries();
+                        tvseries.setName(seriesName);
+                        tvseries.setStatus(seriesStatus);
+                        tvseries.setLink(seriesLink);
 
-                    fileHandler.JSONwriter(tvseries);
-                        
+                        fileHandler.JSONwriter(tvseries);  
+                    }
 		}
 		else if(e.getActionCommand().equals("Change")) {
-                    String seriesName = JOptionPane.showInputDialog("Inserisci il nome della serie");
-                    String seriesStatus = JOptionPane.showInputDialog("Inserisci il nuovo stato della serie");
+                    String seriesName = JOptionPane.showInputDialog("Series' name: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
+                    String seriesStatus = JOptionPane.showInputDialog("Series' status: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
                     fileHandler.JSONmod(seriesName, seriesStatus);
 		}
                 
