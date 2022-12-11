@@ -11,6 +11,7 @@ import java.io.FileReader;
 import java.io.Reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 public class FileHandler {
 	
@@ -32,7 +33,7 @@ public class FileHandler {
                 //writer.write("\n");
                 writer.flush();
                 writer.close();
-                this.mainWindow.mainArea.append("The tv series " + tvseries.getName() + " has been added. \n Status has been set to " +  tvseries.getStatus());
+                JOptionPane.showMessageDialog(null,"The tv series " + tvseries.getName() + " has been added. \n Status has been set to " +  tvseries.getStatus());
             } catch (IOException ex) {
                 Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -78,40 +79,46 @@ public class FileHandler {
         }
         
         public void JSONsearch(String searchedSeries) {
-            boolean trovato = false;
             File curDir = new File(".");
-            
             File[] filesList = curDir.listFiles();
+            int length = filesList.length;
+            int counter = 1;
             for(File f : filesList){
                 if(f.isFile()){
                     String fileName = f.getName();
                     if(fileName.contains("json")){
+                        counter = counter + 1;
                         Gson gson = new Gson();
+                        
+                        //filename splitting
+                        String[] fileNameSplit = fileName.split("\\.");
+                        //actual filename
+                        String properFileName = fileNameSplit[0];
                         
                         try (Reader reader = new FileReader(f)) {
 
-                        // Convert JSON File to Java Object
-                        TVSeries tvseries = gson.fromJson(reader, TVSeries.class);
-
-                        if(fileName.contains(searchedSeries)){
-                            this.mainWindow.mainArea.setText("");
-                            String status;
-                            if(tvseries.getStatus()){
-                                status = "downloaded";
+                            // Convert JSON File to Java Object
+                            TVSeries tvseries = gson.fromJson(reader, TVSeries.class);
+                                
+                            if(properFileName.equals(searchedSeries)){
+                                this.mainWindow.mainArea.setText("");
+                                String status;
+                                if(tvseries.getStatus()){
+                                    status = "downloaded";
+                                }
+                                else{
+                                    status = "not downloaded";
+                                }
+                                this.mainWindow.mainArea.append(tvseries.getName() + ": " + status + "\n");
+                                this.mainWindow.mainArea.append(tvseries.getLink() + "\n");
+                                break;
                             }
                             else{
-                                status = "not downloaded";
+                                if(counter >= length){
+                                    this.mainWindow.mainArea.setText("");
+                                    JOptionPane.showMessageDialog(null,"The tv series " + searchedSeries + " isn't available"+ "\n");
+                                }
                             }
-                            this.mainWindow.mainArea.append(tvseries.getName() + ": " + status + "\n");
-                            this.mainWindow.mainArea.append(tvseries.getLink() + "\n");
-                            trovato = true;
-                        }
-                        else{
-                            if(!trovato){
-                                this.mainWindow.mainArea.setText("");
-                                this.mainWindow.mainArea.append("The tv series " + searchedSeries + " isn't available"+ "\n");
-                            }
-                        }
 
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -122,8 +129,67 @@ public class FileHandler {
             }
         }
 
-        public void JSONmod(String seriesName, String seriesStatus) {
-            this.mainWindow.mainArea.append("WORK IN PROGRESS");
+        public void JSONmod(String seriesName, String newSeriesStatus) {
+            //finds series
+            File curDir = new File(".");
+            
+            File[] filesList = curDir.listFiles();
+            int length = filesList.length;
+            int counter = 1;
+            for(File f : filesList){
+                if(f.isFile()){
+                    String fileName = f.getName();
+                    if(fileName.contains("json")){
+                        counter = counter + 1 ;
+                        Gson gson = new Gson();
+                        
+                        //filename splitting
+                        String[] fileNameSplit = fileName.split("\\.");
+                        //actual filename
+                        String properFileName = fileNameSplit[0];
+                        try (Reader reader = new FileReader(f)) {
+
+                        // Convert JSON File to Java Object
+                        TVSeries tvseries = gson.fromJson(reader, TVSeries.class);
+
+                        if(properFileName.equals(seriesName)){
+                            //search and change
+                            GsonBuilder builder = new GsonBuilder(); 
+                            builder.setPrettyPrinting();
+                            gson = builder.create(); 
+                            FileWriter writer;   
+                            boolean newStat = Boolean.parseBoolean(newSeriesStatus);
+                            tvseries.setStatus(newStat);
+                            try {
+                                String address = tvseries.getName();
+                                writer = new FileWriter(address + ".json");
+                                writer.write(gson.toJson(tvseries));
+                                //writer.write("\n");
+                                writer.flush();
+                                writer.close();
+                                JOptionPane.showMessageDialog(null,"The tv series " + tvseries.getName() + " status' has been set to " +  tvseries.getStatus());
+                                break;
+                            } catch (IOException ex) {
+                                Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
+                            }
+                            
+                        }
+                        else{
+                            if(counter >= length){
+                                JOptionPane.showMessageDialog(null, "The tv series you are searching for doesn't exist");
+                            }
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    }
+                }
+                
+            }
+        
+        
+            
         }
 	
 }
