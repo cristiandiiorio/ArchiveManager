@@ -17,16 +17,41 @@ public class MainWindow {
     JButton cerca = new JButton("Search");
     JButton cercaFieldReset = new JButton("x");
     
-	
     JPanel midPanel = new JPanel();
     JTextArea mainArea = new JTextArea(25,45);	
 	
+    JDialog dialog1 = new JDialog();
+    JPanel dialog1Pane = new JPanel();
+    JLabel nameLabel1 = new JLabel("Series' name: ");
+    JTextField nameField1 = new JTextField("",20);
+    JButton okButton1 = new JButton("Ok");
+    JButton exitButton1 = new JButton("Exit");
+    
+    JDialog dialog2 = new JDialog();
+    JPanel dialog2Pane = new JPanel();
+    JLabel nameLabel2 = new JLabel("Series' link: ");
+    JTextField nameField2 = new JTextField("",20);
+    JButton okButton2 = new JButton("Ok");
+    JButton exitButton2 = new JButton("Exit");
+    
+    JDialog dialog3 = new JDialog();
+    JPanel dialog3Pane = new JPanel();
+    JLabel nameLabel3 = new JLabel("Series' status: ");
+    JTextField nameField3 = new JTextField("",20);
+    JButton okButton3 = new JButton("Ok");
+    JButton exitButton3 = new JButton("Exit");
+    
+    
     JFrame mainFrame;
 	public MainWindow() {
             
             mainFrame = new JFrame();
          
             acListener ac = new acListener(this);
+            dialogListener1 dg1 = new dialogListener1(this);
+            dialogListener2 dg2 = new dialogListener2(this);
+            dialogListener3 dg3 = new dialogListener3(this);
+            
             
             setupMenuButton(add, ac);
             setupMenuButton(change, ac);
@@ -50,10 +75,47 @@ public class MainWindow {
             mainArea.setBorder(BorderFactory.createTitledBorder("Results"));
 
             
+            dialog1.setSize(250, 120);
+            dialog1.setLocationRelativeTo(null);
+
+            dialog1.add(nameLabel1,BorderLayout.NORTH);
+            dialog1.add(nameField1,BorderLayout.CENTER);
+            dialog1.add(dialog1Pane, BorderLayout.SOUTH);
+            dialog1Pane.add(okButton1,BorderLayout.WEST);
+            dialog1Pane.add(exitButton1,BorderLayout.EAST);
+            
+            okButton1.addActionListener(dg1);
+            exitButton1.addActionListener(dg1);
+            
+            dialog2.setSize(250, 120);
+            dialog2.setLocationRelativeTo(null);
+
+            dialog2.add(nameLabel2,BorderLayout.NORTH);
+            dialog2.add(nameField2,BorderLayout.CENTER);
+            dialog2.add(dialog2Pane, BorderLayout.SOUTH);
+            dialog2Pane.add(okButton2,BorderLayout.WEST);
+            dialog2Pane.add(exitButton2,BorderLayout.EAST);
+            
+            okButton2.addActionListener(dg2);
+            exitButton2.addActionListener(dg2);
+            
+            dialog3.setSize(250, 120);
+            dialog3.setLocationRelativeTo(null);
+
+            dialog3.add(nameLabel3,BorderLayout.NORTH);
+            dialog3.add(nameField3,BorderLayout.CENTER);
+            dialog3.add(dialog3Pane, BorderLayout.SOUTH);
+            dialog3Pane.add(okButton3,BorderLayout.WEST);
+            dialog3Pane.add(exitButton3,BorderLayout.EAST);
+            
+            okButton3.addActionListener(dg3);
+            exitButton3.addActionListener(dg3);
+            
             mainFrame.setJMenuBar(menuBar);
             mainFrame.add(topPanel,BorderLayout.CENTER);
             mainFrame.add(midPanel,BorderLayout.SOUTH);
-
+            
+            
             mainFrame.pack();
             mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             mainFrame.setLocationRelativeTo(null);
@@ -67,4 +129,5 @@ public class MainWindow {
             button.setFocusable(false);
             button.addActionListener(ac);
         }
+        
 }
