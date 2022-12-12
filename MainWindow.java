@@ -25,21 +25,21 @@ public class MainWindow {
     JLabel nameLabel1 = new JLabel("Series' name: ");
     JTextField nameField1 = new JTextField("",20);
     JButton okButton1 = new JButton("Ok");
-    JButton exitButton1 = new JButton("Exit");
+    JButton exitButton1 = new JButton("Cancel");
     
     JDialog dialog2 = new JDialog();
     JPanel dialog2Pane = new JPanel();
     JLabel nameLabel2 = new JLabel("Series' link: ");
     JTextField nameField2 = new JTextField("",20);
     JButton okButton2 = new JButton("Ok");
-    JButton exitButton2 = new JButton("Exit");
+    JButton exitButton2 = new JButton("Cancel");
     
     JDialog dialog3 = new JDialog();
     JPanel dialog3Pane = new JPanel();
     JLabel nameLabel3 = new JLabel("Series' status: ");
     JTextField nameField3 = new JTextField("",20);
     JButton okButton3 = new JButton("Ok");
-    JButton exitButton3 = new JButton("Exit");
+    JButton exitButton3 = new JButton("Cancel");
     
     
     JFrame mainFrame;
