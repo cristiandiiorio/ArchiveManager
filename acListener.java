@@ -7,8 +7,8 @@ public class acListener implements ActionListener{
 
 	MainWindow mainWindow = null;
 	
-	public acListener(MainWindow mainWindow) {
-		this.mainWindow = mainWindow;
+	public acListener(MainWindow mainWindow){
+            this.mainWindow = mainWindow;
 	}
 
 	@Override
@@ -33,33 +33,9 @@ public class acListener implements ActionListener{
 		}
 		
 		else if(e.getActionCommand().equals("Add")) {
-                    String seriesName = null;
-                    String seriesStatusPre = null;
-                    String seriesLink = null;
-                    boolean seriesStatus;
-                    
-                    while(seriesName == null){
-                        seriesName = JOptionPane.showInputDialog("Series' name: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
-
-                    }
-                    while(seriesStatusPre == null){
-                        seriesStatusPre = JOptionPane.showInputDialog("Series' status: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
-
-                    }
-                    while(seriesLink == null){
-                        seriesLink = JOptionPane.showInputDialog("Series' link: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
-
-                    }
-
-                    seriesStatus = Boolean.parseBoolean(seriesStatusPre);
-                    TVSeries tvseries = new TVSeries();
-                    tvseries.setName(seriesName);
-                    tvseries.setStatus(seriesStatus);
-                    tvseries.setLink(seriesLink);
-
-                    fileHandler.JSONwriter(tvseries);  
-                    
-		}
+                    this.mainWindow.dialog1.setVisible(true);
+                }        
+		
 		else if(e.getActionCommand().equals("Change")) {
                     String seriesName = JOptionPane.showInputDialog("Series' name: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
                     String newSeriesStatus = JOptionPane.showInputDialog("Series' status: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
