@@ -20,7 +20,11 @@ public class acListener implements ActionListener{
 		}
 		
 		else if(e.getActionCommand().equals("Search")) {
-                    String searchedSeries = this.mainWindow.cercaField.getText();
+                    String searchedSeries = null;
+                    
+                    while(searchedSeries == null){
+                        searchedSeries = this.mainWindow.cercaField.getText();
+                    }
                     fileHandler.JSONsearch(searchedSeries);
 		}
 		
