@@ -1,7 +1,6 @@
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JDialog;
 
 
 public class dialogListener2 implements ActionListener{
@@ -20,6 +19,10 @@ public class dialogListener2 implements ActionListener{
             seriesLink = this.mainWindow.nameField2.getText();
             this.mainWindow.dialog2.setVisible(false);
             this.mainWindow.dialog3.setVisible(true);
+        }
+        
+        else if(e.getActionCommand().equals("Cancel")){
+            this.mainWindow.nameField1.setText("");
         }
     }
 }
