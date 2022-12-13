@@ -4,7 +4,6 @@ import javax.swing.*;
 
 public class MainWindow {
 
-    JPanel hiPanel = new JPanel();
     JMenuBar menuBar = new JMenuBar();
     JButton listSeries = new JButton("List");
     JButton add = new JButton("Add");
@@ -60,6 +59,7 @@ public class MainWindow {
             mainFrame = new JFrame();
          
             acListener ac = new acListener(this);
+            
             dialogListener1 dg1 = new dialogListener1(this);
             dialogListener2 dg2 = new dialogListener2(this);
             dialogListener3 dg3 = new dialogListener3(this);
@@ -77,6 +77,31 @@ public class MainWindow {
             menuBar.add(listSeries);
             menuBar.add(about);
             
+            setupMainDisplay(ac);
+            
+            setupAddDialog(dg1,dg2,dg3);
+            
+            setupChangeDialog(dg1M, dg3M);
+            
+            mainFrame.setJMenuBar(menuBar);
+            mainFrame.add(topPanel,BorderLayout.CENTER);
+            mainFrame.add(midPanel,BorderLayout.SOUTH);
+            
+            mainFrame.pack();
+            mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            mainFrame.setLocationRelativeTo(null);
+            mainFrame.setVisible(true);
+	}
+        
+        public void setupMenuButton(JButton button,acListener ac){
+            button.setOpaque(true);
+            button.setContentAreaFilled(false);
+            button.setBorderPainted(false);
+            button.setFocusable(false);
+            button.addActionListener(ac);
+        }
+        
+        public void setupMainDisplay(acListener ac){
             topPanel.add(cercaLabel);
             topPanel.add(cercaField);
             topPanel.add(cerca);
@@ -87,8 +112,9 @@ public class MainWindow {
             midPanel.add(mainArea);
             mainArea.setEditable(false);
             mainArea.setBorder(BorderFactory.createTitledBorder("Results"));
-
-            
+        }
+        
+        public void setupAddDialog(dialogListener1 dg1, dialogListener2 dg2, dialogListener3 dg3){
             dialog1.setSize(250, 120);
             dialog1.setLocationRelativeTo(null);
 
@@ -125,7 +151,9 @@ public class MainWindow {
             notDownloadedButton.addActionListener(dg3);
             nameLabel3.setHorizontalAlignment(JLabel.CENTER);
             nameLabel3.setVerticalAlignment(JLabel.CENTER);
-            
+        }
+        
+        public void setupChangeDialog(dialogListener1Mod dg1M, dialogListener3Mod dg3M){
             dialog1Mod.setSize(250, 120);
             dialog1Mod.setLocationRelativeTo(null);
 
@@ -150,24 +178,6 @@ public class MainWindow {
             notDownloadedButtonMod.addActionListener(dg3M);
             nameLabel3Mod.setHorizontalAlignment(JLabel.CENTER);
             nameLabel3Mod.setVerticalAlignment(JLabel.CENTER);
-            
-            mainFrame.setJMenuBar(menuBar);
-            mainFrame.add(topPanel,BorderLayout.CENTER);
-            mainFrame.add(midPanel,BorderLayout.SOUTH);
-            
-            
-            mainFrame.pack();
-            mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            mainFrame.setLocationRelativeTo(null);
-            mainFrame.setVisible(true);
-	}
-        
-        public void setupMenuButton(JButton button,acListener ac){
-            button.setOpaque(true);
-            button.setContentAreaFilled(false);
-            button.setBorderPainted(false);
-            button.setFocusable(false);
-            button.addActionListener(ac);
         }
         
 }
