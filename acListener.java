@@ -37,9 +37,7 @@ public class acListener implements ActionListener{
                 }        
 		
 		else if(e.getActionCommand().equals("Change")) {
-                    String seriesName = JOptionPane.showInputDialog("Series' name: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
-                    String newSeriesStatus = JOptionPane.showInputDialog("Series' status: (ᵖʳᵉˢˢ﹡ᵗᵒ ᵃᵇᵒʳᵗ)");
-                    fileHandler.JSONmod(seriesName, newSeriesStatus);
+                    this.mainWindow.dialog1Mod.setVisible(true);
 		}
                 
                 else if(e.getActionCommand().equals("About")){
