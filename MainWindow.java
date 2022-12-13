@@ -20,6 +20,7 @@ public class MainWindow {
     JPanel midPanel = new JPanel();
     JTextArea mainArea = new JTextArea(25,45);	
 	
+    
     JDialog dialog1 = new JDialog();
     JPanel dialog1Pane = new JPanel();
     JLabel nameLabel1 = new JLabel("Series' name: ");
@@ -40,6 +41,19 @@ public class MainWindow {
     JButton downloadedButton = new JButton("Downloaded");
     JButton notDownloadedButton = new JButton("Not Downloaded");
     
+    JDialog dialog1Mod = new JDialog();
+    JPanel dialog1ModPane = new JPanel();
+    JLabel nameLabel1Mod = new JLabel("Series' name: ");
+    JTextField nameField1Mod = new JTextField("",20);
+    JButton okButton1Mod = new JButton("Ok");
+    JButton exitButton1Mod = new JButton("Cancel");
+    
+    JDialog dialog3Mod = new JDialog();
+    JPanel dialog3ModPane = new JPanel();
+    JLabel nameLabel3Mod = new JLabel("Series' status: ");
+    JButton downloadedButtonMod = new JButton("Downloaded");
+    JButton notDownloadedButtonMod = new JButton("Not Downloaded");
+    
     JFrame mainFrame;
 	public MainWindow() {
             
@@ -50,6 +64,8 @@ public class MainWindow {
             dialogListener2 dg2 = new dialogListener2(this);
             dialogListener3 dg3 = new dialogListener3(this);
             
+            dialogListener1Mod dg1M = new dialogListener1Mod(this);
+            dialogListener3Mod dg3M = new dialogListener3Mod(this);
             
             setupMenuButton(add, ac);
             setupMenuButton(change, ac);
@@ -109,6 +125,31 @@ public class MainWindow {
             notDownloadedButton.addActionListener(dg3);
             nameLabel3.setHorizontalAlignment(JLabel.CENTER);
             nameLabel3.setVerticalAlignment(JLabel.CENTER);
+            
+            dialog1Mod.setSize(250, 120);
+            dialog1Mod.setLocationRelativeTo(null);
+
+            dialog1Mod.add(nameLabel1Mod,BorderLayout.NORTH);
+            dialog1Mod.add(nameField1Mod,BorderLayout.CENTER);
+            dialog1Mod.add(dialog1ModPane, BorderLayout.SOUTH);
+            dialog1ModPane.add(okButton1Mod,BorderLayout.WEST);
+            dialog1ModPane.add(exitButton1Mod,BorderLayout.EAST);
+            
+            okButton1Mod.addActionListener(dg1M);
+            exitButton1Mod.addActionListener(dg1M);
+            
+            dialog3Mod.setSize(250, 120);
+            dialog3Mod.setLocationRelativeTo(null);
+
+            dialog3Mod.add(nameLabel3Mod,BorderLayout.CENTER);
+            dialog3Mod.add(dialog3ModPane, BorderLayout.SOUTH);
+            dialog3ModPane.add(downloadedButtonMod,BorderLayout.WEST);
+            dialog3ModPane.add(notDownloadedButtonMod,BorderLayout.EAST);
+            
+            downloadedButtonMod.addActionListener(dg3M);
+            notDownloadedButtonMod.addActionListener(dg3M);
+            nameLabel3Mod.setHorizontalAlignment(JLabel.CENTER);
+            nameLabel3Mod.setVerticalAlignment(JLabel.CENTER);
             
             mainFrame.setJMenuBar(menuBar);
             mainFrame.add(topPanel,BorderLayout.CENTER);
