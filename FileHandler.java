@@ -41,7 +41,6 @@ public class FileHandler {
         
         public void JSONreader() {
             this.mainWindow.mainArea.setText("");
-            this.mainWindow.mainArea.append("Showing all tv series: \n");
             
             File curDir = new File(".");
             

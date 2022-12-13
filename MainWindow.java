@@ -37,10 +37,8 @@ public class MainWindow {
     JDialog dialog3 = new JDialog();
     JPanel dialog3Pane = new JPanel();
     JLabel nameLabel3 = new JLabel("Series' status: ");
-    JTextField nameField3 = new JTextField("",20);
-    JButton okButton3 = new JButton("Ok");
-    JButton exitButton3 = new JButton("Cancel");
-    
+    JButton downloadedButton = new JButton("Downloaded");
+    JButton notDownloadedButton = new JButton("Not Downloaded");
     
     JFrame mainFrame;
 	public MainWindow() {
@@ -102,14 +100,15 @@ public class MainWindow {
             dialog3.setSize(250, 120);
             dialog3.setLocationRelativeTo(null);
 
-            dialog3.add(nameLabel3,BorderLayout.NORTH);
-            dialog3.add(nameField3,BorderLayout.CENTER);
+            dialog3.add(nameLabel3,BorderLayout.CENTER);
             dialog3.add(dialog3Pane, BorderLayout.SOUTH);
-            dialog3Pane.add(okButton3,BorderLayout.WEST);
-            dialog3Pane.add(exitButton3,BorderLayout.EAST);
+            dialog3Pane.add(downloadedButton,BorderLayout.WEST);
+            dialog3Pane.add(notDownloadedButton,BorderLayout.EAST);
             
-            okButton3.addActionListener(dg3);
-            exitButton3.addActionListener(dg3);
+            downloadedButton.addActionListener(dg3);
+            notDownloadedButton.addActionListener(dg3);
+            nameLabel3.setHorizontalAlignment(JLabel.CENTER);
+            nameLabel3.setVerticalAlignment(JLabel.CENTER);
             
             mainFrame.setJMenuBar(menuBar);
             mainFrame.add(topPanel,BorderLayout.CENTER);

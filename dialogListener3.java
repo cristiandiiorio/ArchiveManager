@@ -9,6 +9,7 @@ public class dialogListener3 implements ActionListener{
     MainWindow mainWindow = null;
     String seriesName = null;
     String seriesLink = null;
+    boolean seriesStatus;
     
     public dialogListener3(MainWindow mainWindow) {
         this.mainWindow = mainWindow;
@@ -18,27 +19,25 @@ public class dialogListener3 implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         seriesName = dialogListener1.seriesName;
         seriesLink = dialogListener2.seriesLink;
-        String seriesStatusPre = null;
-        boolean seriesStatus;
         
         FileHandler fileHandler = new FileHandler(mainWindow);
         
-        if(e.getActionCommand().equals("Ok")){
-            seriesStatusPre = this.mainWindow.nameField3.getText();
-            this.mainWindow.dialog3.setVisible(false);
-
-            seriesStatus = Boolean.parseBoolean(seriesStatusPre);
-            TVSeries tvseries = new TVSeries();
-            tvseries.setName(seriesName);
-            tvseries.setStatus(seriesStatus);
-            tvseries.setLink(seriesLink);
-
-            fileHandler.JSONwriter(tvseries);
+        if(e.getActionCommand().equals("Downloaded")){
+            seriesStatus = true;
         }
         
-        else if(e.getActionCommand().equals("Cancel")){
-            this.mainWindow.nameField1.setText("");
+        else if(e.getActionCommand().equals("Not Downloaded")){
+            seriesStatus = false;
         }
+        
+        this.mainWindow.dialog3.setVisible(false);
+
+        TVSeries tvseries = new TVSeries();
+        tvseries.setName(seriesName);
+        tvseries.setStatus(seriesStatus);
+        tvseries.setLink(seriesLink);
+
+        fileHandler.JSONwriter(tvseries);
     }
                     
 }
