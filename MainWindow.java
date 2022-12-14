@@ -1,3 +1,5 @@
+package programpackage;
+
 import java.awt.BorderLayout;
 
 import javax.swing.*;
