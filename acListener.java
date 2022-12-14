@@ -42,7 +42,7 @@ public class acListener implements ActionListener{
                 
                 else if(e.getActionCommand().equals("About")){
                     JDialog dialog = new JDialog(this.mainWindow.mainFrame, "About");
-                    JTextArea dialogArea = new JTextArea("This is a simple Java Swing GUI \n that uses JSON files to track \n my downloaded tv series." + "\n\n\n\n\n\n" + "            ©Cristian Di Iorio 2022");
+                    JTextArea dialogArea = new JTextArea("This is a simple Java Swing GUI \n that uses JSON files to track \n my downloaded tv series." + "\n\n\n\n\n\n" + "            Cristian Di Iorio 2022");
                     
                     dialogArea.setSize(190,190);
                     dialogArea.setEditable(false);
