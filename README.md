@@ -27,4 +27,5 @@ java -jar nameofyourjar.jar
 
 <p> Right click the .bat file then press the <i>Send to</i> button, after that click <i>Desktop (create shortcut)</i>.
 Now go on your desktop and right click the shortcut. A menu will appear and you need to click on <i>Properties</i>. Then in the <i>Run</i> dropdown menu choose <i>Minimized</i>. 
+
 From here you can also change the icon of your shortcut. </p>
