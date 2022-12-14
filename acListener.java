@@ -52,6 +52,10 @@ public class acListener implements ActionListener{
                     dialog.setLocationRelativeTo(null);
                     dialog.setVisible(true);
                 }
+                
+                else if(e.getActionCommand().equals("Delete")){
+                    this.mainWindow.deleteDialog.setVisible(true);
+                }
 		
 	}
 
