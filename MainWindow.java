@@ -8,6 +8,7 @@ public class MainWindow {
     JButton listSeries = new JButton("List");
     JButton add = new JButton("Add");
     JButton change = new JButton("Change");
+    JButton delete = new JButton("Delete");
     JButton about =new JButton("About");
     
     JPanel topPanel = new JPanel();
@@ -53,6 +54,13 @@ public class MainWindow {
     JButton downloadedButtonMod = new JButton("Downloaded");
     JButton notDownloadedButtonMod = new JButton("Not Downloaded");
     
+    JDialog deleteDialog = new JDialog();
+    JPanel deleteDialogPane = new JPanel();
+    JLabel deleteDialogNameLabel = new JLabel("Series' name: ");
+    JTextField deleteDialogNameField = new JTextField("",20);
+    JButton deleteDialogOkButton = new JButton("Delete");
+    JButton deleteDialogCancelButton = new JButton("Cancel");
+    
     JFrame mainFrame;
 	public MainWindow() {
             
@@ -67,14 +75,18 @@ public class MainWindow {
             dialogListener1Mod dg1M = new dialogListener1Mod(this);
             dialogListener3Mod dg3M = new dialogListener3Mod(this);
             
+            deleteListener dl = new deleteListener(this);
+            
             setupMenuButton(add, ac);
             setupMenuButton(change, ac);
             setupMenuButton(listSeries, ac);
             setupMenuButton(about, ac);
+            setupMenuButton(delete, ac);
             
+            menuBar.add(listSeries);
             menuBar.add(add);
             menuBar.add(change);
-            menuBar.add(listSeries);
+            menuBar.add(delete);
             menuBar.add(about);
             
             setupMainDisplay(ac);
@@ -82,6 +94,19 @@ public class MainWindow {
             setupAddDialog(dg1,dg2,dg3);
             
             setupChangeDialog(dg1M, dg3M);
+            
+            deleteDialog.setSize(250, 120);
+            deleteDialog.setLocationRelativeTo(null);
+
+            deleteDialog.add(deleteDialogNameLabel,BorderLayout.NORTH);
+            deleteDialog.add(deleteDialogNameField,BorderLayout.CENTER);
+            deleteDialog.add(deleteDialogPane, BorderLayout.SOUTH);
+            deleteDialogPane.add(deleteDialogOkButton,BorderLayout.WEST);
+            deleteDialogPane.add(deleteDialogCancelButton,BorderLayout.EAST);
+            
+            deleteDialogOkButton.addActionListener(dl);
+            deleteDialogCancelButton.addActionListener(dl);
+            
             
             mainFrame.setJMenuBar(menuBar);
             mainFrame.add(topPanel,BorderLayout.CENTER);

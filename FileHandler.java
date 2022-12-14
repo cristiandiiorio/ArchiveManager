@@ -2,11 +2,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 import com.google.gson.Gson; 
-import com.google.gson.GsonBuilder;  
-import java.awt.Color;
-import java.io.BufferedReader;
+import com.google.gson.GsonBuilder;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
 import java.util.logging.Level;
