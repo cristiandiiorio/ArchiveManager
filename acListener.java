@@ -17,7 +17,7 @@ public class acListener implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		FileHandler  fileHandler = new FileHandler(mainWindow);
 		
-		if(e.getActionCommand().equals("x")) {
+		if(e.getActionCommand().equals("⌫")) {
                     this.mainWindow.cercaField.setText("");
 		}
 		
