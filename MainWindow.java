@@ -1,7 +1,6 @@
 package programpackage;
 
 import java.awt.BorderLayout;
-
 import javax.swing.*;
 
 public class MainWindow {
@@ -11,7 +10,7 @@ public class MainWindow {
     JButton add = new JButton("Add");
     JButton change = new JButton("Change");
     JButton delete = new JButton("Delete");
-    JButton about =new JButton("About");
+    JButton settings =new JButton("Settings");
     
     JPanel topPanel = new JPanel();
     JLabel cercaLabel = new JLabel("Searching for:");
@@ -64,6 +63,11 @@ public class MainWindow {
     JButton deleteDialogOkButton = new JButton("Delete");
     JButton deleteDialogCancelButton = new JButton("Cancel");
     
+    JMenu dropdown = new JMenu("Settings");
+    JButton lightButton = new JButton("Light theme");
+    JButton darkButton = new JButton("Dark theme");
+    JButton aboutButton = new JButton("About");
+    
     JFrame mainFrame;
 	public MainWindow() {
             
@@ -83,14 +87,23 @@ public class MainWindow {
             setupMenuButton(add, ac);
             setupMenuButton(change, ac);
             setupMenuButton(listSeries, ac);
-            setupMenuButton(about, ac);
+            setupMenuButton(settings , ac);
             setupMenuButton(delete, ac);
             
             menuBar.add(listSeries);
             menuBar.add(add);
             menuBar.add(change);
             menuBar.add(delete);
-            menuBar.add(about);
+            menuBar.add(dropdown);
+            
+            dropdown.add(lightButton);
+            dropdown.add(darkButton);
+            dropdown.add(aboutButton);
+            setupMenuButton(lightButton, ac);
+            setupMenuButton(darkButton, ac);
+            setupMenuButton(aboutButton, ac);
+            lightButton.setEnabled(false);
+            darkButton.setEnabled(true);
             
             setupMainDisplay(ac);
             
@@ -139,7 +152,7 @@ public class MainWindow {
 
             midPanel.add(mainScrollPane);
             mainArea.setEditable(false);
-            mainArea.setBorder(BorderFactory.createTitledBorder("Results"));
+            mainScrollPane.setBorder(BorderFactory.createTitledBorder("Results"));
         }
         
         public void setupAddDialog(dialogListener1 dg1, dialogListener2 dg2, dialogListener3 dg3){

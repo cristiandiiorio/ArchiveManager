@@ -42,6 +42,22 @@ public class acListener implements ActionListener{
                     this.mainWindow.dialog1Mod.setVisible(true);
 		}
                 
+                else if(e.getActionCommand().equals("Delete")){
+                    this.mainWindow.deleteDialog.setVisible(true);
+                }
+                
+                else if(e.getActionCommand().equals("Light theme")){
+                    ArchiveManager.theme = "light";
+                    this.mainWindow.lightButton.setEnabled(false);
+                    this.mainWindow.darkButton.setEnabled(true);
+                }
+                
+                else if(e.getActionCommand().equals("Dark theme")){
+                    ArchiveManager.theme = "dark";
+                    this.mainWindow.lightButton.setEnabled(true);
+                    this.mainWindow.darkButton.setEnabled(false);
+                }
+		
                 else if(e.getActionCommand().equals("About")){
                     JDialog dialog = new JDialog(this.mainWindow.mainFrame, "About");
                     JTextArea dialogArea = new JTextArea("This is a simple Java Swing GUI \n that uses JSON files to track \n my downloaded tv series." + "\n\n\n\n\n\n" + "            Cristian Di Iorio 2022");
@@ -54,11 +70,6 @@ public class acListener implements ActionListener{
                     dialog.setLocationRelativeTo(null);
                     dialog.setVisible(true);
                 }
-                
-                else if(e.getActionCommand().equals("Delete")){
-                    this.mainWindow.deleteDialog.setVisible(true);
-                }
-		
 	}
 
 }
