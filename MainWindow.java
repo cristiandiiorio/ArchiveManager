@@ -17,10 +17,11 @@ public class MainWindow {
     JLabel cercaLabel = new JLabel("Searching for:");
     JTextField cercaField = new JTextField(20);
     JButton cerca = new JButton("Search");
-    JButton cercaFieldReset = new JButton("x");
+    JButton cercaFieldReset = new JButton("⌫");
     
     JPanel midPanel = new JPanel();
     JTextArea mainArea = new JTextArea(25,45);	
+    JScrollPane mainScrollPane = new JScrollPane(mainArea);
 	
     
     JDialog dialog1 = new JDialog();
@@ -136,7 +137,7 @@ public class MainWindow {
             cerca.addActionListener(ac);
             cercaFieldReset.addActionListener(ac);
 
-            midPanel.add(mainArea);
+            midPanel.add(mainScrollPane);
             mainArea.setEditable(false);
             mainArea.setBorder(BorderFactory.createTitledBorder("Results"));
         }
