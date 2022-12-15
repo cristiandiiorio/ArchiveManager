@@ -13,7 +13,6 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import static programpackage.ArchiveManager.theme;
 
 public class FileHandler {
 	
@@ -70,7 +69,7 @@ public class FileHandler {
                             this.mainWindow.mainArea.append("\n");
 
                         } catch (IOException e) {
-                            e.printStackTrace();
+                            JOptionPane.showMessageDialog(null, "There's been an error");
                         }
 
                     }
@@ -122,7 +121,7 @@ public class FileHandler {
                             }
 
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "There's been an error");
                     }
                     }
                 }
@@ -182,7 +181,7 @@ public class FileHandler {
                         }
 
                     } catch (IOException e) {
-                        e.printStackTrace();
+                        JOptionPane.showMessageDialog(null, "There's been an error");
                     }
                     }
                 }

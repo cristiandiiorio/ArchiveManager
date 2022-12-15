@@ -62,7 +62,7 @@ public class deleteListener implements ActionListener{
                             }
 
                         } catch (IOException ex) {
-                            ex.printStackTrace();
+                            JOptionPane.showMessageDialog(null, "There's been an error");
                         }
                     }
                 }
