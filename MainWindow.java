@@ -5,6 +5,8 @@ import javax.swing.*;
 
 public class MainWindow {
 
+    FileHandler fileHandler = new FileHandler(null);
+    
     JMenuBar menuBar = new JMenuBar();
     JButton listSeries = new JButton("List");
     JButton add = new JButton("Add");
@@ -102,8 +104,18 @@ public class MainWindow {
             setupMenuButton(lightButton, ac);
             setupMenuButton(darkButton, ac);
             setupMenuButton(aboutButton, ac);
-            lightButton.setEnabled(false);
-            darkButton.setEnabled(true);
+            
+            //LIGHT AND DARK THEME SETUP
+            String theme = null;
+            theme = fileHandler.readTheme();
+            if(theme.equals("light")){
+                lightButton.setEnabled(false);
+                darkButton.setEnabled(true);
+            }
+            else if(theme.equals("dark")){
+                lightButton.setEnabled(true);
+                darkButton.setEnabled(false);
+            }
             
             setupMainDisplay(ac);
             

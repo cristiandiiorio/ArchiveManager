@@ -47,13 +47,15 @@ public class acListener implements ActionListener{
                 }
                 
                 else if(e.getActionCommand().equals("Light theme")){
-                    ArchiveManager.theme = "light";
+                    FileHandler.writeTheme("light");
+                    JOptionPane.showMessageDialog(null, "Restart the app");
                     this.mainWindow.lightButton.setEnabled(false);
                     this.mainWindow.darkButton.setEnabled(true);
                 }
                 
                 else if(e.getActionCommand().equals("Dark theme")){
-                    ArchiveManager.theme = "dark";
+                    FileHandler.writeTheme("dark");
+                    JOptionPane.showMessageDialog(null, "Restart the app");
                     this.mainWindow.lightButton.setEnabled(true);
                     this.mainWindow.darkButton.setEnabled(false);
                 }
