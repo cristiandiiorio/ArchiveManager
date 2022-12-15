@@ -5,15 +5,23 @@ import com.formdev.flatlaf.FlatDarkLaf;
 
 
 public class ArchiveManager {
-    static String theme = "light"; //TO BE READ FROM FILE
+    static String theme;
+    
     public static void main(String[] args) {
-        if(theme.equals("light")){
+        
+        FileHandler fileHandler = new FileHandler(null);
+        
+        theme = fileHandler.readTheme();
+        
+        if(ArchiveManager.theme.equals("light")){
             FlatLightLaf.setup();
             new MainWindow();
         }
-        else if(theme.equals("dark")){
+        else if(ArchiveManager.theme.equals("dark")){
             FlatDarkLaf.setup();
             new MainWindow();
         }
+            
     }
+    
 }

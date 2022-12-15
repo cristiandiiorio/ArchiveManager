@@ -6,11 +6,14 @@ import java.io.IOException;
 import com.google.gson.Gson; 
 import com.google.gson.GsonBuilder;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.Reader;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import static programpackage.ArchiveManager.theme;
 
 public class FileHandler {
 	
@@ -188,6 +191,35 @@ public class FileHandler {
         
         
             
+        }
+        
+        static void writeTheme(String newTheme) {
+            File themeFile = new File("C:/Users/Cristian/Documents/NetBeansProjects/ArchiveManager/src/main/java/programpackage/theme.txt");
+            
+            try {
+                FileWriter fw = new FileWriter(themeFile);
+                fw.write(newTheme);
+                fw.flush();
+                fw.close();
+                
+            } catch (IOException ex) {
+                Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        static String readTheme(){
+            String theme = null;
+            File themeFile = new File("C:/Users/Cristian/Documents/NetBeansProjects/ArchiveManager/src/main/java/programpackage/theme.txt");
+            try {
+                Scanner scanner = new Scanner(themeFile);
+                theme = scanner.nextLine();
+                scanner.close();
+
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(ArchiveManager.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+            return theme;
         }
 	
 }
