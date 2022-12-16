@@ -15,7 +15,7 @@ public class ArchiveManager {
         try {
             File themeFile = new File("theme.txt");
             if (themeFile.createNewFile()) {
-                JOptionPane.showMessageDialog(null, "New theme file created");
+                //JOptionPane.showMessageDialog(null, "New theme file created");
             } else {
                 
             }
