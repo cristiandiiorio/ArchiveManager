@@ -12,10 +12,13 @@ public class ArchiveManager {
     
     public static void main(String[] args) {
         
+        FileHandler fileHandler = new FileHandler(null);
+        
         try {
             File themeFile = new File("theme.txt");
             if (themeFile.createNewFile()) {
-                //JOptionPane.showMessageDialog(null, "New theme file created");
+                JOptionPane.showMessageDialog(null, "New theme file created");
+                fileHandler.writeTheme("light");
             } else {
                 
             }
@@ -23,17 +26,18 @@ public class ArchiveManager {
           JOptionPane.showMessageDialog(null, "There has been an error");
         }
         
-        FileHandler fileHandler = new FileHandler(null);
-        
         theme = fileHandler.readTheme();
         
         if(ArchiveManager.theme.equals("light")){
             FlatLightLaf.setup();
             new MainWindow();
         }
-        else{
+        else if(ArchiveManager.theme.equals("dark")){
             FlatDarkLaf.setup();
             new MainWindow();
+        }
+        else{
+            System.out.println(theme);
         }
             
     }

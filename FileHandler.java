@@ -193,12 +193,10 @@ public class FileHandler {
         }
         
         static void writeTheme(String newTheme) {
-            File themeFile = new File("C:/Users/Cristian/Documents/NetBeansProjects/ArchiveManager/src/main/java/programpackage/theme.txt");
             
             try {
-                FileWriter fw = new FileWriter(themeFile);
+                FileWriter fw = new FileWriter("theme.txt");
                 fw.write(newTheme);
-                fw.flush();
                 fw.close();
                 
             } catch (IOException ex) {
@@ -208,16 +206,18 @@ public class FileHandler {
         
         static String readTheme(){
             String theme = null;
-            File themeFile = new File("C:/Users/Cristian/Documents/NetBeansProjects/ArchiveManager/src/main/java/programpackage/theme.txt");
+            File themeFile = new File("theme.txt");
+            Scanner scanner;
+            
             try {
-                Scanner scanner = new Scanner(themeFile);
+                scanner = new Scanner(themeFile);
                 theme = scanner.nextLine();
                 scanner.close();
-
+                
             } catch (FileNotFoundException ex) {
-                Logger.getLogger(ArchiveManager.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(FileHandler.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
+            
             return theme;
         }
 	
